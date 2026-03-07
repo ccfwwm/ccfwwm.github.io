@@ -274,6 +274,20 @@
             font-size: 0.9rem;
         }
         
+        .chapter-image {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .chapter-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
         .story-text {
             background: rgba(255,255,255,0.1);
             padding: 30px;
@@ -525,38 +539,187 @@
             {
                 title: "第一回",
                 subtitle: "灵根孕育源流出",
-                content: `<p>盘古开天辟地之后，世界分为四大部洲：东胜神州、西牛贺洲、南瞻部洲、北俱芦洲。</p>
-                <p>在东胜神州有一座花果山，山上有一块仙石。这块仙石受天真地秀，日月精华，天长日久，竟孕育出一只石猴。</p>
-                <p>这石猴生下来就会爬会走，眼运金光，射冲斗府惊动了天庭。群猴拜他为"美猴王"，他在花果山无忧无虑地生活着。</p>
-                <p>有一天，美猴王忽然悲伤落泪，众猴问他为何烦恼。美猴王说："我们虽快乐，但将来年老体衰阎王老子管着，不能长久，真是可悲！"</p>
-                <p>于是他下决心出海寻仙，学得长生不老之术。这一去，就是八九年的光阴......</p>`
+                image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZT0iMCUiIHN0eWxlPSJzdGl0Y2ppOmdyZWVuIiAvPgogICAgICA8c3RvcCBvZmZzZT0iMTAwJSIgc3R5bGU9InN0aWNraTpyZWQiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2JnKSIvPgogIDx0ZXh0IHg9IjMwMCIgeT0iMjAwIiBmb250LWZhbWlseT0i6K+35a+56LGhIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7om7rliLDlj5Hlu7rnq6Dol4E8L3RleHQ+CiAgPHRleHQgeD0iMzAwIiB5PSIyNTAiIGZvbnQtZmFtaWx5PSLlvIDlj5Hlu7rnq6Dol4giIGZvbnQtc2l6ZT0iMjQiIGZpbGw9I2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+5Y+w5o+Q5Y+w55So5peF5a+56LGhPC90ZXh0PgogIDx0ZXh0IHg9IjMwMCIgeT0iMzAwIiBmb250LWZhbWlseT0i5LyY5LiA5aS55Y+jIiBmb250LXNpemU9IjE2IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7lv4PliJ3lp4vlv4Pot7PnoIHllYblk4E8L3RleHQ+Cjwvc3ZnPg==",
+                content: `<p>很久很久以前，天地还没有分开，整个世界就像一个大鸡蛋，混沌一片。</p>
+                <p>在这个大鸡蛋里，孕育着一个巨人，他的名字叫盘古。盘古在大鸡蛋里整整睡了一万八千年，终于有一天，他醒来了。</p>
+                <p>盘古醒来后，发现眼前一片漆黑，什么都看不见。他心里非常生气，于是拿起一把大斧头，使出全身力气，向黑暗砍去。</p>
+                <p>"咔嚓——"一声巨响，大鸡蛋被砍开了！</p>
+                <p>那些清亮的东西，慢慢地往上升，变成了天；那些浑浊的东西，慢慢地往下沉，变成了地。</p>
+                <p>盘古怕天和地还会合在一起，就用自己的头顶着天，脚踩着地，站在天地之间。</p>
+                <p>随着天每天升高一丈，地每天加厚一丈，盘古的身体也每天长高一丈，就这样过了一万八千年，天已经非常高，地已经非常厚，而盘古也变成了一位顶天立地的巨人。</p>
+                <p>盘古死后，他的身体变成了世界万物：眼睛变成太阳和月亮，血液变成江河湖海，汗毛变成花草树木……</p>
+                <p>世界形成了，分为了四大部洲：东胜神州、西牛贺洲、南瞻部洲、北俱芦洲。</p>
+                <p>在东胜神州，有一个国家叫"傲来国"。这个国家靠近大海，海边有一座山，名叫"花果山"。这座山非常高非常大，山上长满了奇花异草，四季如春，果实累累。</p>
+                <p>花果山的山顶上，有一块巨大的仙石。这块仙石高三丈六尺五寸，周长二丈四尺。奇怪的是，这块石头上有九窍八孔，按九宫八卦排列。</p>
+                <p>这块仙石吸取了天地的灵气，日月的精华，天长日久，竟然孕育出了一只石猴！</p>
+                <p>有一天，这只石猴忽然从石头里蹦了出来，"轰"的一声，石头裂开，石猴跳了出来。</p>
+                <p>石猴出生后，就会爬会走。他的眼睛里射出两道金光，一直射到天宫上，连玉皇大帝都被惊动了！</p>
+                <p>玉皇大帝赶紧召集神仙们开会："下界有一只石猴出生了，眼睛里射出金光，这是怎么回事呀？"太白金星站出来说："陛下不用担心，这是天地精华孕育的猴子，等他吃了凡间的食物，金光就会消失了。"</p>
+                <p>玉皇大帝听了，点点头，就没有去管石猴了。</p>
+                <p>石猴出生后，就在花果山里生活。他和山上的猴子们交上了朋友，一起玩耍，一起寻找食物。</p>
+                <p>有一天，天气非常热，石猴和猴子们来到山涧边玩水。突然，一只猴子提议说："谁能跳进水帘洞，我们就拜他为王！"原来，山背后有一个瀑布，瀑布后面有一个山洞，看起来很神秘。</p>
+                <p>石猴听了，自告奋勇地跳了出来："让我来！"他深吸一口气，纵身一跳，跃过了瀑布，进入了水帘洞。</p>
+                <p>洞里非常漂亮，有石床、石桌、石椅，还有各种奇形怪状的石头。石猴在里面玩了一会儿，又跳了出来。</p>
+                <p>猴子们看到石猴安全出来，都围上来问："里面怎么样？有没有危险？"石猴笑着说："里面可漂亮了！还有各种好玩的东西呢！"</p>
+                <p>猴子们听了，都很开心。于是他们一起跳进水帘洞，在里面安居乐业。</p>
+                <p>猴子们把石猴推举为大王，称他为"美猴王"。美猴王从此开始了他在花果山的快乐生活。</p>
+                <p>可是，有一天，美猴王忽然闷闷不乐，流下了眼泪。猴子们都很奇怪，问："大王，您怎么哭了？"</p>
+                <p>美猴王说："我们虽然在这里很快乐，但是将来有一天，我们会变老，会死去。阎王爷会来勾我们的魂魄，带我们去阴间。这样的日子，有什么意思呢？"</p>
+                <p>猴子们听了，也都悲伤起来。</p>
+                <p>这时候，一只通背猿猴站出来说："大王，据说世界上有三种人可以长生不老：一种是佛，一种是仙，一种是神。他们都不归阎王爷管，能够长生不老！"</p>
+                <p>美猴王听了，眼睛一亮："太好了！我要出海去寻找神仙，学到长生不老的法术！"</p>
+                <p>于是，美猴王告别了猴子猴孙，独自一人，乘坐木筏，漂洋过海，去寻找神仙。这一去，也不知道能不能找到神仙，能不能学到法术……</p>
+                <p>美猴王历尽艰辛，先后在南瞻部洲和西牛贺洲寻访了整整八九年，都没有找到神仙。</p>
+                <p>有一天，他来到西海边上的一座高山。这座山叫"灵台方寸山"，山上有座道观，叫"斜月三星洞"。</p>
+                <p>美猴王走进道观，看见一位老神仙正在给徒弟们讲道。这位老神仙就是菩提祖师，是一位法力无边的佛道双修的神仙。</p>
+                <p>菩提祖师看见美猴王，问："你是从哪里来的？"美猴王跪下磕头，说："我是从东胜神州傲来国花果山来的。我想拜您为师，学习长生不老的法术！"</p>
+                <p>菩提祖师看美猴王虽然样子丑陋，但很有诚心，就收他为徒，给他取了个名字，叫"孙悟空"。</p>
+                <p>从此，孙悟空就在斜月三星洞，开始了他的学艺生涯……</p>
+                <p>欲知后事如何，请听下回分解。</p>`
             },
             {
                 title: "第二回",
                 subtitle: "悟彻菩提真妙理",
-                content: `<p>美猴王拜在菩提祖师门下，祖师给他取名"孙悟空"。悟空在斜月三星洞学会了七十二变和筋斗云。</p>
-                <p>一天，悟空在众师兄弟面前卖弄本事，变作一棵松树。祖师见了很不高兴，说："不可在人前卖弄！"于是赶悟空下山。</p>
-                <p>悟空回到花果山，发现猴子猴孙被一个混世魔王欺负。悟空大怒，打死魔王，夺回兵器。</p>
-                <p>东海龙王送给悟空一根如意金箍棒，这宝贝能大能小，重达一万三千五百斤。悟空又去阎王那里划掉了生死簿上猴类的名字。</p>
-                <p>这一下可闯了大祸！玉帝派天兵天将下界擒拿......</p>`
+                image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZT0iMCUiIHN0eWxlPSJzdGl0Y2ppOmJsdWUiIC8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0aWNraTpwcnVsZSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYmcpIi8+CiAgPHRleHQgeD0iMzAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSLorr7nianmhl0iIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPueahOS4i+WumiDlrZfliLDov5s8L3RleHQ+CiAgPHRleHQgeD0iMzAwIiB5PSIyNTAiIGZvbnQtZmFtaWx5PSLlsIbors7kiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPui+mOaWh+ermeWNt+espuS4i+exu+OBmOOBkeOBhuOBhuOAgjwvc3ZnPg==",
+                content: `<p>话说美猴王离别了花果山，独自一人驾着木筏，在大海里漂泊。风浪很大，但是美猴王不怕困难，坚持向前航行。</p>
+                <p>也不知道过了多少天，美猴王终于登上了西牛贺洲的地界。他爬上高山，四处寻找神仙的踪迹。</p>
+                <p>有一天，美猴王正在山间行走，忽然听到有人在唱歌。歌声悠扬动听，美猴王顺着歌声走去，看到一位樵夫在砍柴。</p>
+                <p>美猴王上前问道："这位老伯，请问附近有神仙吗？"樵夫抬头看了看美猴王，说："这座山叫做'灵台方寸山'，山上有座'斜月三星洞'，里面住着一位菩提祖师，本事可大呢！"</p>
+                <p>美猴王听了，非常高兴，谢过樵夫，就往山上走去。</p>
+                <p>来到山前，只见这里云雾缭绕，树木葱茏，鸟语花香，真是一个神仙福地！美猴王顺着山路往上走，来到一座道观前。</p>
+                <p>道观的大门上写着"斜月三星洞"五个大字。美猴王走进道观，看到一位老神仙正在给徒弟们讲道。这位老神仙正是菩提祖师。</p>
+                <p>菩提祖师看到美猴王，停下讲课，问："你是从哪里来的？到这里来干什么？"</p>
+                <p>美猴王赶紧跪下磕头，说："师父，我从东胜神州傲来国花果山来的。我想拜您为师，学习长生不老的法术！"</p>
+                <p>菩提祖师上下打量着美猴王，说："你长得尖嘴猴腮，不像个好人。看你这模样，倒像是个吃人的妖怪。我怎么能收你为徒呢？"</p>
+                <p>美猴王急忙说："师父，我是真心诚意来学艺的！我虽然是猴子变得，但我有一颗向善的心，请您收下我吧！"</p>
+                <p>菩提祖师看美猴王态度诚恳，就改变了主意，说："好吧，我收下你。但是你要给我磕头，行拜师礼。"</p>
+                <p>美猴王高兴极了，连连磕头，行了拜师礼。</p>
+                <p>菩提祖师给美猴王取了个名字，叫"孙悟空"。从此，孙悟空就成了菩提祖师的徒弟。</p>
+                <p>菩提祖师有好多徒弟，孙悟空是最小的一个。祖师每天给徒弟们讲经说法，孙悟空也跟着学习。</p>
+                <p>一晃眼，几年过去了。孙悟空在斜月三星洞学会了读书写字，也学会了一些基本的法术。</p>
+                <p>有一天，菩提祖师在讲台上讲课，讲的是道家法术。徒弟们都在认真听讲，只有孙悟空在下面抓耳挠腮，坐立不安。</p>
+                <p>祖师讲完了课，问徒弟们："你们都学了什么本领？上来说给我听听。"</p>
+                <p>徒弟们一个个上前，有的会腾云驾雾，有的会变化术，有的会五行遁术。</p>
+                <p>轮到孙悟空了，他说："师父，我……我什么都不会……"</p>
+                <p>祖师把孙悟空叫到面前，说："你在我这里也学了几年了，今天我就教你一些本领。"</p>
+                <p>祖师问孙悟空："你想学什么？是'术'字门中之道，还是'流'字门中之道，或者是'静'字门中之道？"</p>
+                <p>孙悟空搔搔头，说："师父，这些道法都能长生不老吗？"</p>
+                <p>祖师说："不能。"</p>
+                <p>孙悟空说："那我不学。我要学能长生不老的法术！"</p>
+                <p>祖师聽了，故意生气，举起手杖在孙悟空头上打了三下，然后背着手，走进了里屋。</p>
+                <p>其他徒弟们都责怪孙悟空："师父要教你本领，你怎么能拒绝呢？这下好了，师父生气了！"</p>
+                <p>但是孙悟空不生气，因为他看出了祖师的暗示：打三下——是让他三更时分去找师父；背着手走进里屋——是从后门进去。</p>
+                <p>到了三更天，孙悟空悄悄起床，从后门溜进祖师住的房间。</p>
+                <p>祖师果然在那里等着他！祖师传给孙悟空一篇口诀，这口诀叫做"大品天仙诀"，是长生不老的法术！</p>
+                <p>孙悟空牢牢记住口诀，依法修炼，果然学会了长生不老之术！</p>
+                <p>后来，祖师又教孙悟空七十二变和筋斗云。</p>
+                <p>七十二变，就是能变成各种人物、动物、植物、物品，共七十二种变化。</p>
+                <p>筋斗云，就是翻一个筋斗，就能跑十万八千里！</p>
+                <p>孙悟空学会这些本领后，高兴得又蹦又跳。</p>
+                <p>有一天，祖师把孙悟空叫来，说："你已经学会了我的本领，可以下山去了。但是你要记住，不可仗着本领在外面惹是生非。否则，我会收回你的本领！"</p>
+                <p>孙悟空连连答应，拜别了师父，驾着筋斗云，回花果山去了。</p>
+                <p>欲知后事如何，请听下回分解。</p>`
             },
             {
                 title: "第三回",
                 subtitle: "大闹天宫",
-                content: `<p>太白金星奏请玉帝招安孙悟空。玉帝封他为"弼马温"，让他养马。悟空不知这是小官，干得十分起劲。</p>
-                <p>后来悟空知道弼马温是最低最小的官，气得大怒："俺老孙有天大的本事，竟让养马！"当下打出天宫，回到花果山。</p>
-                <p>玉帝派天兵天将去捉拿。巨灵神先锋出战，被悟空一棒打死。哪吒三太子变作三头六臂，也敌不过悟空。</p>
-                <p>太上老君用金刚镯偷袭，才抓住悟空。玉帝把悟空投入八卦炉中，想炼化他。不料炉中烟火反而炼就了悟空的火眼金睛！</p>
-                <p>悟空跳出丹炉，一路打出凌霄宝殿，自立为"齐天大圣"！</p>`
+                image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZT0iMCUiIHN0eWxlPSJzdGl0Y2ppOm9yYW5nZSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RpY2tpOnllbGxvdyIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYmcpIi8+CiAgPHRleHQgeD0iMzAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSLorr7nianmhl0iIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPui/meaWh+e7huWksei0pzwvdGV4dD4KICA8dGV4dCB4PSIzMDAiIHk9IjI1MCIgZm9udC1mYW1pbHk9IuWwiOespeOAgiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7ov5/liJ3lp4vlv4Pot7PlhoXlrrk8L3RleHQ+Cjwvc3ZnPg==",
+                content: `<p>话说孙悟空学会了七十二变和筋斗云，告别了菩提祖师，驾着筋斗云回到了花果山。</p>
+                <p>花果山上的猴子们看到大王回来了，都欢呼起来："大王回来了！大王回来了！"</p>
+                <p>孙悟空看到猴子们，高兴地说："孩子们，我学会了仙法回来了！以后再也没有人能欺负我们了！"</p>
+                <p>可是，有一天，一个妖怪来到称"花果山，自混世魔王"，要把猴子们赶走，抢占花果山。</p>
+                <p>孙悟空听说后，非常生气。他说："竟敢在我的地盘上撒野！看我来教训你！"</p>
+                <p>孙悟空跳上前去，和混世魔王打了起来。几个回合下来，混世魔王就不是对手了，被孙悟空一棒打死。</p>
+                <p>打败了混世魔王，孙悟空带着猴子们霸占了混世魔王的兵器库。猴子们都有了武器，势力更大了。</p>
+                <p>但是，孙悟空还没有一件称手的兵器。猴子们说："大王听说东海龙宫里有许多宝贝，您可以去那里看看。"</p>
+                <p>孙悟空听了，就跳入大海，往东海龙宫游去。</p>
+                <p>东海龙王看到孙悟空来了，吓了一跳，说："大圣驾到，有失远迎！"</p>
+                <p>孙悟空说："老龙王，我来看看你有什么宝贝。"</p>
+                <p>龙王让人搬出许多宝贝，有刀、剑、戟、矛等各种兵器。孙悟空看了，都不满意，说："这些兵器都太轻了，不够厉害。"</p>
+                <p>龙王想了想，说："大圣，这海里有一根定海神针铁，是当年大禹治水时留下的宝贝。它有一万三千五百斤重，不知道您要不要？"</p>
+                <p>孙悟空说："让我看看。"</p>
+                <p>龙王带着孙悟空来到海底，看到一根巨大的铁柱子，直插海底。铁柱子上写着"如意金箍棒，重一万三千五百斤"。</p>
+                <p>孙悟空看了非常喜欢，说："好宝贝！就是它了！"他走上前去，用手轻轻一拂，那铁柱子就变小了。</p>
+                <p>孙悟空把金箍棒拿在手里，玩弄起来。金箍棒能大能小，能长能短，真是件宝贝！</p>
+                <p>孙悟空谢过龙王，带着金箍棒回到了花果山。</p>
+                <p>有了金箍棒，孙悟空更加威风了。他每天在花果山操练猴子们，准备干一番大事业。</p>
+                <p>这一天，孙悟空忽然想到："我在花果山虽然快乐，但是天上的神仙都看不起我。我要让他们知道我的厉害！"</p>
+                <p>于是，孙悟空一个筋斗，翻到了天宫。</p>
+                <p>天宫的守门天兵看到孙悟空，都拦住了他："你是从哪里来的猴子？竟敢擅闯天宫！"</p>
+                <p>孙悟空说："快去通报玉帝，就说是齐天大圣来了！"</p>
+                <p>天兵们赶紧去禀报玉皇大帝。</p>
+                <p>玉帝问："什么是齐天大圣？"太白金星站出来说："陛下，这猴子在花果山自称齐天大圣，不如把他招安到天宫来，给他个官做。"</p>
+                <p>玉帝同意了，让太白金星去花果山招安孙悟空。</p>
+                <p>太白金星来到花果山，对孙悟空说："大圣，玉帝请您上天做官呢！"</p>
+                <p>孙悟空很高兴，就跟着太白金星上了天宫。</p>
+                <p>玉帝问众神仙："有什么官职可以给这只猴子做？"武曲星君说："御马监缺个弼马温，可以让这只猴子去做。"</p>
+                <p>玉帝说："好吧，就封他为弼马温。"</p>
+                <p>弼马温是干什么的呢？原来是养马的小官！</p>
+                <p>孙悟空不知道弼马温是什么官，高高兴兴地去上任了。他把天马养得膘肥体壮，非常用心。</p>
+                <p>有一天，孙悟空和同事们一起喝酒。有人问他："弼马温大人，您是什么级别的官呀？"</p>
+                <p>孙悟空说："我是玉帝亲封的齐天大圣，当然是大官了！"</p>
+                <p>那个人笑着说："弼马温是最小的官，连一品都不到呢！"\n\n<p>孙悟空听了，气得火冒三丈："什么？让我养马？这不是羞辱我吗？"</p>
+                <p>孙悟空一气之下，推翻了酒席，打出了御马监，回花果山去了。</p>
+                <p>玉帝听说孙悟空反下天宫，非常生气，派托塔李天王和哪吒三太子去花果山捉拿孙悟空。</p>
+                <p>李天王带着天兵天将，把花果山围了个水泄不通。</p>
+                <p>孙悟空拿着金箍棒，跳出洞口，大叫："谁敢来抓我？"</p>
+                <p>先锋官巨灵神跳出来要和孙悟空打。孙悟空轻轻一棒，就把巨灵神打成了肉饼！</p>
+                <p>哪吒三太子见势不好，变作三头六臂，手持六件兵器，向孙悟空打来。</p>
+                <p>孙悟空也变作三头六臂，和哪吒打了起来。打了三十个回合，哪吒不是对手，负伤逃走了。</p>
+                <p>李天王见势不好，只好收兵回天宫，向玉帝禀报。</p>
+                <p>玉帝听了，也没办法。这时候，太白金星又出来了："陛下，不如再招安他，封他为齐天大圣，给他一个虚职。"</p>
+                <p>玉帝同意了，让太白金星再去花果山。</p>
+                <p>太白金星见到孙悟空，说："大圣，玉帝封您为齐天大圣，有自己的府邸，可以和诸神一样。"</p>
+                <p>孙悟空信以为真，又跟着太白金星上了天宫。</p>
+                <p>玉帝果然封他为"齐天大圣"，还给了他一座齐天大圣府。</p>
+                <p>但是，这个齐天大圣是个有职无权的虚衔。孙悟空每天无所事事，非常无聊。</p>
+                <p>有一天，孙悟空听说蟠桃园里的蟠桃非常好吃，就跑去偷吃蟠桃。</p>
+                <p>这可闯了大祸了！欲知后事如何，请听下回分解。</p>`
             },
             {
                 title: "第四回",
                 subtitle: "五行山下定心猿",
-                content: `<p>如来佛祖应玉帝之请前来降妖。如来与悟空打赌：悟空一个筋斗能飞出如来掌心，便让玉帝让位。</p>
-                <p>悟空一个筋斗翻出十万八千里，在如来手指上写下"齐天大圣到此一游"。他以为已经飞出天外，却没想到仍在如来掌心。</p>
-                <p>如来翻掌一压，将悟空压在五行山下。山下压了整整五百年！</p>
-                <p>五百年后，如来佛祖派观音菩萨去东土寻找取经人。菩萨给了唐僧紧箍儿、锦斓袈裟和九锡禅杖。</p>
-                <p>取经大业即将开始......</p>`
+                image: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZT0iMCUiIHN0eWxlPSJzdGl0Y2ppOnB1cnBsZSIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RpY2tpOnB1cnBsZSIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjYmcpIi8+CiAgPHRleHQgeD0iMzAwIiB5PSIyMDAiIGZvbnQtZmFtaWx5PSLorr7nianmhl0iIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiNmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuebruWxq+Wkj+Wfi+WPsDwvdGV4dD4KICA8dGV4dCB4PSIzMDAiIHk9IjI1MCIgZm9udC1mYW1pbHk9IuWwiOespeOAgiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7lhoXlrrnmiJDlip/lp4vlnojjgIHliIbmiafnoIHlh7o8L3RleHQ+Cjwvc3ZnPg==",
+                content: `<p>上回说到，孙悟空大闹天宫，偷吃蟠桃，偷喝御酒，又偷吃了太上老君的仙丹，闯下了大祸。</p>
+                <p>玉皇大帝非常生气，派了十万天兵天将，布下天罗地网，要把孙悟空抓住。</p>
+                <p>花果山上，孙悟空率领猴子猴孙，和天兵天将展开了一场大战。</p>
+                <p>二郎神杨戬和孙悟空打得难分胜负。两个人都会七十二变，变成各种动物和物品，互相比拼变化之术。</p>
+                <p>太上老君看准时机，从天上扔下一个金刚琢，打中了孙悟空的头。孙悟空头晕眼花站立不稳，被二郎神抓住。</p>
+                <p>天兵天将把孙悟空押回天宫，等待玉帝发落。</p>
+                <p>玉帝下令把孙悟空处死。但是刀砍斧剁，雷劈火烧，都伤不了孙悟空一根毫毛。</p>
+                <p>太上老君说："陛下，这猴子吃了蟠桃，喝了御酒，又吃了我的仙丹，已经是金刚不坏之身。不如把他扔进八卦炉里，炼成灰烬。"</p>
+                <p>玉帝同意了，让人把孙悟空推进八卦炉。</p>
+                <p>八卦炉里有六丁神火，燃烧了七七四十九天。玉帝以为孙悟空已经被烧死了，让人打开炉盖看看。</p>
+                <p>就在这时，孙悟空从炉子里跳了出来！原来，他被烟熏火烤了七七四十九天，不但没死，反而炼出了一双火眼金睛！</p>
+                <p>这双眼睛能看穿一切妖魔鬼变的伪装，非常厉害！</p>
+                <p>孙悟空跳出八卦炉，拿金箍棒打向了凌霄宝殿。一路上，挡路的天兵天将都被他打得落花流水。</p>
+                <p>玉帝吓得赶紧让人去请如来佛祖。</p>
+                <p>如来佛祖带着阿傩、伽叶两位尊者，来到天宫。</p>
+                <p>如来佛祖对孙悟空说："你这猴子，既然有这么大本事，就不要在天宫捣乱了。"</p>
+                <p>孙悟空说："玉帝的位置应该让给我来做！我本领高强，为什么不能当玉帝？"</p>
+                <p>如来佛祖笑了笑，说："好吧，我和你打个赌。如果你一个筋斗能飞出我的手掌心，我就让玉帝把天宫让给你。如果你飞不出去，就不要再来捣乱，回你的花果山去。"</p>
+                <p>孙悟空想："这有何难？一个筋斗就是十万八千里，我还飞不出他的手掌心？"</p>
+                <p>于是孙悟空跳上如来的手掌，念动咒语，一个筋斗翻了出去。</p>
+                <p>他飞呀飞呀，飞了很远很远。他看到前面有五根大柱子，以为是天边了。</p>
+                <p>孙悟空想："这应该飞出天边了吧？"他在一根柱子上写了"齐天大圣到此一游"八个大字，做为记号。</p>
+                <p>然后，孙悟空又翻了一个筋斗，回到如来面前。</p>
+                <p>但是如来佛祖笑着说："你还在我的手掌里呢！"</p>
+                <p>孙悟空低头一看，发现自己写的那八个字就在如来的手指头上！原来，他根本就没有飞出如来的手掌！</p>
+                <p>孙悟空大惊失色，想要逃跑。但是如来佛祖伸出手掌，翻手一压，就把孙悟空压在了五行山下。</p>
+                <p>五行山是金、木、水、火、土五种元素化成的一座大山。孙悟空被压在山下，动弹不得。</p>
+                <p>如来佛祖又写了一张符咒，贴在五行山顶上。这样，孙悟空就再也无法逃出来了。</p>
+                <p>如来佛祖对孙悟空说："你在山下好好反省，等有缘人来救你。"说完，就回灵山去了。</p>
+                <p>可怜齐天大圣孙悟空，就这样被压在五行山下，整整五百年！</p>
+                <p>五百年后的一天，如来佛祖在灵山召开法会，决定要把三藏真经传到东土大唐。</p>
+                <p>如来佛祖说："东土大唐的众生，需要真经的救度。谁愿意去东土取经？"观音菩萨站出来说："弟子愿意去。"</p>
+                <p>如来佛祖给了观音菩萨锦斓袈裟、九锡禅杖，还有三个紧箍儿。</p>
+                <p>观音菩萨带着这些宝贝，下凡去了东土大唐，寻找取经人。</p>
+                <p>大唐京城长安附近，有一座寺庙叫金山寺。寺里有个小和尚，法名叫玄奘。</p>
+                <p>玄奘是金蝉子转世，从小就聪明过人，佛法精通。</p>
+                <p>观音菩萨变成一个老和尚，来到金山寺，把锦斓袈裟和九锡禅杖送给了玄奘。</p>
+                <p>观音菩萨告诉玄奘："你是如来佛祖选中的取经人。去吧，去西天取经，拯救大唐的众生。"</p>
+                <p>唐太宗听说了这件事，非常支持玄奘。玄奘骑上马，正式开始了西天取经的旅程。</p>
+                <p>欲知后事如何，请听下回分解。</p>`
             },
             {
                 title: "第五回",
@@ -1129,11 +1292,13 @@
             const ch = chapters[index];
             const chapterDiv = document.createElement('div');
             chapterDiv.className = 'chapter-content active';
+            const imageHtml = ch.image ? `<div class="chapter-image"><img src="${ch.image}" alt="${ch.title}" onerror="this.style.display='none'"></div>` : '';
             chapterDiv.innerHTML = `
                 <div class="chapter-header">
                     <h2 class="chapter-title">${ch.title} ${ch.subtitle}</h2>
                     <p class="chapter-meta">第 ${index + 1} 章，共 ${chapters.length} 章</p>
                 </div>
+                ${imageHtml}
                 <div class="story-text">${ch.content}</div>
             `;
             container.appendChild(chapterDiv);
