@@ -3,100 +3,748 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>孙悟空大闹天宫</title>
+    <title>西游记 - 儿童故事</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #e74c3c;
+            --secondary: #f39c12;
+            --accent: #27ae60;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #eee;
+            font-family: 'Noto Serif SC', serif;
+            background: var(--bg-gradient);
+            color: var(--light);
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        h1 {
-            text-align: center;
-            color: #f0c040;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        
+        /* 动态背景 */
+        .clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
         }
-        h2 {
-            color: #ff6b6b;
-            border-bottom: 2px solid #f0c040;
-            padding-bottom: 10px;
+        
+        .cloud {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
         }
-        .chapter {
+        
+        @keyframes float {
+            from { transform: translateX(-100px); }
+            to { transform: translateX(calc(100vw + 100px)); }
+        }
+        
+        /* 顶部导航 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* 侧边菜单 */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            z-index: 200;
+            transition: right 0.3s ease;
+            padding-top: 80px;
+            overflow-y: auto;
+        }
+        
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .chapter-list {
+            list-style: none;
+            padding: 0 15px;
+        }
+        
+        .chapter-list li {
+            padding: 15px;
+            margin: 5px 0;
             background: rgba(255,255,255,0.1);
-            padding: 20px;
             border-radius: 10px;
-            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        p {
-            line-height: 1.8;
-            font-size: 1.1em;
+        
+        .chapter-list li:hover, .chapter-list li.active {
+            background: var(--primary);
+            transform: translateX(-5px);
         }
-        .monkey {
-            display: block;
-            margin: 30px auto;
-            width: 200px;
+        
+        .chapter-num {
+            width: 30px;
+            height: 30px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark);
+            flex-shrink: 0;
         }
-        .footer {
+        
+        /* 遮罩层 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 主内容区 */
+        .main-content {
+            position: relative;
+            z-index: 1;
+            padding: 100px 20px 120px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* 封面 */
+        .cover {
             text-align: center;
-            margin-top: 40px;
-            color: #888;
-            font-size: 0.9em;
+            max-width: 600px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cover-title {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        
+        .cover-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 30px;
+        }
+        
+        .cover-img {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .start-btn {
+            display: inline-block;
+            padding: 15px 50px;
+            background: linear-gradient(135deg, var(--primary), #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.5);
+        }
+        
+        /* 章节内容 */
+        .chapter-content {
+            display: none;
+            max-width: 700px;
+            width: 100%;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .chapter-content.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .chapter-title {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .chapter-meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        .story-text {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 20px;
+            line-height: 2;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
+        .story-text p {
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+        
+        .story-text p:first-child {
+            text-indent: 0;
+        }
+        
+        .story-text p:first-child::first-letter {
+            font-size: 2.5em;
+            float: left;
+            margin-right: 10px;
+            line-height: 1;
+            color: var(--secondary);
+            font-family: 'ZCOOL KuaiLe', cursive;
+        }
+        
+        /* 底部导航 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            background: var(--primary);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+            z-index: 300;
+        }
+        
+        /* 人物介绍弹窗 */
+        .character-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+            padding: 30px;
+            border-radius: 20px;
+            z-index: 250;
+            max-width: 90%;
+            width: 350px;
+            text-align: center;
+            border: 2px solid var(--secondary);
+        }
+        
+        .character-modal.active {
+            display: block;
+            animation: popIn 0.3s ease;
+        }
+        
+        @keyframes popIn {
+            from { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+        
+        .character-avatar {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .character-name {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .character-desc {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 2.2rem;
+            }
+            
+            .story-text {
+                padding: 20px;
+                font-size: 1rem;
+            }
+            
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+            
+            .bottom-nav {
+                padding: 15px;
+            }
+            
+            .nav-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* 加载动画 */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 500;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            font-size: 3rem;
+            animation: spin 1s infinite linear;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <h1>🐒 孙悟空大闹天宫 ⚡</h1>
+    <!-- 加载动画 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner">🐵</div>
+    </div>
     
-    <div class="chapter">
-        <h2>第一章：弼马温上任</h2>
-        <p>话说那花果山巅，有一块仙石，受天真地秀，日月精华，孕育出一只石猴。这石猴正是孙悟空。</p>
-        <p>孙悟空学成归来，自立为"齐天大圣"，终日与猴孙们饮酒作乐，好不快活。</p>
-        <p>一日，玉帝降旨招安，封孙悟空为"弼马温"——一个养马的官职。孙悟空不知其中缘由，还以为自己当了大官欣喜若狂。</p>
+    <!-- 进度条 -->
+    <div class="progress" id="progress"></div>
+    
+    <!-- 动态云朵 -->
+    <div class="clouds">
+        <div class="cloud" style="top: 10%; animation-delay: 0s;">☁️</div>
+        <div class="cloud" style="top: 30%; animation-delay: -5s;">☁️</div>
+        <div class="cloud" style="top: 50%; animation-delay: -10s;">☁️</div>
+        <div class="cloud" style="top: 70%; animation-delay: -15s;">☁️</div>
     </div>
+    
+    <!-- 顶部导航 -->
+    <header class="header">
+        <a href="#" class="logo" onclick="showCover()">
+            <span>🐵</span>
+            <span>西游记</span>
+        </a>
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    </header>
+    
+    <!-- 侧边菜单 -->
+    <div class="overlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+        <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+        <h3 style="padding: 15px; color: var(--secondary);">📖 章节目录</h3>
+        <ul class="chapter-list" id="chapterList"></ul>
+    </aside>
+    
+    <!-- 人物介绍弹窗 -->
+    <div class="character-modal" id="characterModal" onclick="closeCharacter()">
+        <div class="character-avatar" id="charAvatar">🐵</div>
+        <div class="character-name" id="charName">孙悟空</div>
+        <div class="character-desc" id="charDesc">齐天大圣</div>
+    </div>
+    
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 封面 -->
+        <div class="cover" id="cover">
+            <h1 class="cover-title">🐒 西游记</h1>
+            <p class="cover-subtitle">儿童经典故事</p>
+            <div class="cover-img">🏰</div>
+            <p style="margin: 20px 0; color: rgba(255,255,255,0.8);">
+                讲述唐僧师徒四人西天取经的传奇故事<br>
+                孙悟空、猪八戒、沙僧、白龙马<br>
+                一路上降妖除魔，历经九九八十一难
+            </p>
+            <button class="start-btn" onclick="startReading()">开始阅读 📖</button>
+        </div>
+        
+        <!-- 章节内容容器 -->
+        <div id="chapterContainer"></div>
+    </main>
+    
+    <!-- 底部导航 -->
+    <nav class="bottom-nav" id="bottomNav" style="display: none;">
+        <button class="nav-btn" id="prevBtn" onclick="prevChapter()">
+            ← 上一章
+        </button>
+        <span id="chapterIndicator" style="color: rgba(255,255,255,0.7);">1 / 10</span>
+        <button class="nav-btn" id="nextBtn" onclick="nextChapter()">
+            下一章 →
+        </button>
+    </nav>
 
-    <div class="chapter">
-        <h2>第二章：得知真相</h2>
-        <p>任职半月，孙悟空方知弼马温乃最小的官职，气得火冒三丈："俺老孙有七十二变、神通广大，竟让俺养马！"</p>
-        <p>当下跳下龙椅，掏出金箍棒，打出南天门，回花果山去了。</p>
-    </div>
-
-    <div class="chapter">
-        <h2>第三章：大战天兵</h2>
-        <p>玉帝闻讯大怒，派托塔天王率十万天兵下界擒拿。</p>
-        <p>巨灵神率先出战，被孙悟空一棒打折兵器，败下阵来。哪吒三太子变作三头六臂，与悟空战成平手。</p>
-        <p>最终还是太上老君用金刚镯偷袭，方才擒住悟空。</p>
-    </div>
-
-    <div class="chapter">
-        <h2>第四章：八卦炉中</h2>
-        <p>玉帝将悟空投入八卦炉中，企图炼化。不曾想炉中烟火反而炼就了悟空的火眼金睛。</p>
-        <p>四十九天后，炉门开启，悟空破炉而出，双眼金光灿灿一路打出凌霄宝殿。</p>
-    </div>
-
-    <div class="chapter">
-        <h2>第五章：齐天大圣</h2>
-        <p>天庭无人能挡，悟空直杀到玉帝面前，指着玉帝大笑："玉帝老儿，这天宫不如让俺老孙来坐！"</p>
-        <p>玉帝惊慌失措，急请如来佛祖前来。</p>
-    </div>
-
-    <div class="chapter">
-        <h2>第六章：五行山下</h2>
-        <p>如来佛祖与悟空打赌：悟空一个筋斗能飞出如来掌心，便让玉帝让位。悟空一个筋斗翻出十万八千里，在如来五指山上写下"齐天大圣到此一游"。</p>
-        <p>待悟空返回，却发现仍在如来掌心。如来翻掌一压，将悟空压在五行山下。</p>
-    </div>
-
-    <div class="chapter">
-        <h2>尾声</h2>
-        <p>五百年后，唐僧取经路过五行山，悟空被放出，保护唐僧西天取经，终成正果。</p>
-        <p style="text-align: center; font-size: 1.3em; color: #f0c040;">—— 全剧终 ——</p>
-    </div>
-
-    <div class="footer">
-        <p>🐵 由 OpenClaw 生成 🦔</p>
-    </div>
+    <script>
+        // 西游记章节数据
+        const chapters = [
+            {
+                title: "第一回",
+                subtitle: "灵根孕育源流出",
+                content: `<p>盘古开天辟地之后，世界分为四大部洲：东胜神州、西牛贺洲、南瞻部洲、北俱芦洲。</p>
+                <p>在东胜神州有一座花果山，山上有一块仙石。这块仙石受天真地秀，日月精华，天长日久，竟孕育出一只石猴。</p>
+                <p>这石猴生下来就会爬会走，眼运金光，射冲斗府惊动了天庭。群猴拜他为"美猴王"，他在花果山无忧无虑地生活着。</p>
+                <p>有一天，美猴王忽然悲伤落泪，众猴问他为何烦恼。美猴王说："我们虽快乐，但将来年老体衰阎王老子管着，不能长久，真是可悲！"</p>
+                <p>于是他下决心出海寻仙，学得长生不老之术。这一去，就是八九年的光阴......</p>`
+            },
+            {
+                title: "第二回",
+                subtitle: "悟彻菩提真妙理",
+                content: `<p>美猴王拜在菩提祖师门下，祖师给他取名"孙悟空"。悟空在斜月三星洞学会了七十二变和筋斗云。</p>
+                <p>一天，悟空在众师兄弟面前卖弄本事，变作一棵松树。祖师见了很不高兴，说："不可在人前卖弄！"于是赶悟空下山。</p>
+                <p>悟空回到花果山，发现猴子猴孙被一个混世魔王欺负。悟空大怒，打死魔王，夺回兵器。</p>
+                <p>东海龙王送给悟空一根如意金箍棒，这宝贝能大能小，重达一万三千五百斤。悟空又去阎王那里划掉了生死簿上猴类的名字。</p>
+                <p>这一下可闯了大祸！玉帝派天兵天将下界擒拿......</p>`
+            },
+            {
+                title: "第三回",
+                subtitle: "大闹天宫",
+                content: `<p>太白金星奏请玉帝招安孙悟空。玉帝封他为"弼马温"，让他养马。悟空不知这是小官，干得十分起劲。</p>
+                <p>后来悟空知道弼马温是最低最小的官，气得大怒："俺老孙有天大的本事，竟让养马！"当下打出天宫，回到花果山。</p>
+                <p>玉帝派天兵天将去捉拿。巨灵神先锋出战，被悟空一棒打死。哪吒三太子变作三头六臂，也敌不过悟空。</p>
+                <p>太上老君用金刚镯偷袭，才抓住悟空。玉帝把悟空投入八卦炉中，想炼化他。不料炉中烟火反而炼就了悟空的火眼金睛！</p>
+                <p>悟空跳出丹炉，一路打出凌霄宝殿，自立为"齐天大圣"！</p>`
+            },
+            {
+                title: "第四回",
+                subtitle: "五行山下定心猿",
+                content: `<p>如来佛祖应玉帝之请前来降妖。如来与悟空打赌：悟空一个筋斗能飞出如来掌心，便让玉帝让位。</p>
+                <p>悟空一个筋斗翻出十万八千里，在如来手指上写下"齐天大圣到此一游"。他以为已经飞出天外，却没想到仍在如来掌心。</p>
+                <p>如来翻掌一压，将悟空压在五行山下。山下压了整整五百年！</p>
+                <p>五百年后，如来佛祖派观音菩萨去东土寻找取经人。菩萨给了唐僧紧箍儿、锦斓袈裟和九锡禅杖。</p>
+                <p>取经大业即将开始......</p>`
+            },
+            {
+                title: "第五回",
+                subtitle: "观音禅院救火僧",
+                content: `<p>唐僧离开长安，西行取经。路上收了两个徒弟：孙悟空和小龙马。</p>
+                <p>师徒三人来到观音院。院主金池长老是个两百多岁的老僧，他收藏了许多珍贵袈裟，想霸占唐僧的锦斓袈裟。</p>
+                <p>金池长老让徒弟放火想烧死唐僧师徒。悟空去向广目天王借来辟火罩，保护唐僧。</p>
+                <p>大火烧了观音院，黑风山妖怪黑熊精趁火打劫，偷走了袈裟。悟空追到黑风山，与妖怪大战。</p>
+                <p>最后观音菩萨收服黑熊精，让他做了守山大神，袈裟得以归还。</p>`
+            },
+            {
+                title: "第六回",
+                subtitle: "猪八戒拜师",
+                content: `<p>师徒三人继续西行，来到高老庄。高太公说女儿被一个妖怪霸占了，请法师捉妖。</p>
+                <p>悟空变成高小姐试探妖怪。妖怪原是天蓬元帅因调戏嫦娥被贬下凡，错投猪胎，故名猪八戒。</p>
+                <p>悟空与猪八戒大战一场。八戒不是对手，逃到福陵山云栈洞。悟空追到洞前，八戒得知唐僧取经便拜他为师，愿意保护取经。</p>
+                <p>从此师徒三人变成四人，一起西行取经。</p>`
+            },
+            {
+                title: "第七回",
+                subtitle: "流沙河收沙僧",
+                content: `<p>师徒四人来到流沙河。河水汹涌，没有渡船。这时河里钻出一个妖怪，举杖就打。</p>
+                <p>悟空和八戒联手都降不住他。观音菩萨派木叉行者前来，说明这是卷帘大将因打破琉璃盏被贬下凡。</p>
+                <p>唐僧给妖怪取名沙悟净。沙僧愿意皈依佛门，拜唐僧为师。从此师徒四人：唐僧、孙悟空、猪八戒、沙僧，加上白龙马，正式成团！</p>
+                <p>取经队伍终于齐全了！</p>`
+            },
+            {
+                title: "第八回",
+                subtitle: "三打白骨精",
+                content: `<p>师徒四人来到白虎岭。山中有个白骨精，一心想吃唐僧肉长生不老。</p>
+                <p>第一次，白骨精变成一个俊俏姑娘，提着斋饭。悟空火眼金睛看出是妖精，一棒打死。妖精逃脱，留下一具假尸。</p>
+                <p>第二次，妖精变成老婆婆来找女儿。悟空又认出是妖精，再打一棒。</p>
+                <p>第三次，妖精变成老公公。悟空第三次打死妖精，这回真被打死，现出白骨本相，脊梁上写着"白骨夫人"。</p>
+                <p>唐僧肉眼凡胎看不出真相，以为悟空连伤三条人命，狠心写下贬书，赶走悟空。悟空含泪拜别师父......</p>`
+            },
+            {
+                title: "第九回",
+                subtitle: "真假美猴王",
+                content: `<p>悟空被赶走后，六耳猕猴假冒悟空，打伤唐僧，抢走行李包裹。假悟空变出一帮假唐僧、猪八戒、沙僧，要自己去取经。</p>
+                <p>真悟空回来，与假悟空打到南海观音菩萨处，又打到天宫、地府，都分不出真假。</p>
+                <p>最后如来佛祖指出假悟空是六耳猕猴，真悟空一棒打死。师徒重归于好，继续西行。</p>
+                <p>经过这次劫难，唐僧更加信任悟空了。</p>`
+            },
+            {
+                title: "第十回",
+                subtitle: "取得真经归",
+                content: `<p>历经千辛万苦，师徒四人终于到达西天灵山。如来佛祖让阿傩、伽叶传给唐僧真经。</p>
+                <p>不料两位尊者向唐僧索要"人事"。唐僧没有准备，只给了紫金钵盂。尊者给了无字真经。</p>
+                <p>燃灯古佛派白雄尊者追上取经队伍，点破真相。师徒四人返回灵山，换取有字真经。</p>
+                <p>如来封唐僧为旃檀功德佛，孙悟空为斗战胜佛，猪八戒为净坛使者，沙僧为金身罗汉，白龙马为八部天龙。</p>
+                <p>师徒四人修成正果，西游记圆满结束！</p>
+                <p style="text-align: center; font-size: 1.3em; color: var(--secondary); margin-top: 30px;">—— 全书完 ——</p>`
+            }
+        ];
+        
+        // 人物数据
+        const characters = {
+            '孙悟空': { avatar: '🐵', desc: '齐天大圣，火眼金睛，七十二变，一个筋斗十万八千里' },
+            '猪八戒': { avatar: '🐷', desc: '天蓬元帅错投猪胎，性格懒惰但可爱' },
+            '沙僧': { avatar: '🧔', desc: '卷帘大将忠厚老实，任劳任怨' },
+            '唐僧': { avatar: '👨‍�', desc: '金蝉子转世，取经人，肉眼凡胎但善良' },
+            '白龙马': { avatar: '🐴', desc: '西海龙王三太子，驼负唐僧西行' }
+        };
+        
+        let currentChapter = 0;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChapterList();
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        });
+        
+        // 初始化章节列表
+        function initChapterList() {
+            const list = document.getElementById('chapterList');
+            chapters.forEach((ch, i) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span class="chapter-num">${i + 1}</span>${ch.title}`;
+                li.onclick = () => goToChapter(i);
+                list.appendChild(li);
+            });
+        }
+        
+        // 显示封面
+        function showCover() {
+            document.getElementById('cover').style.display = 'block';
+            document.getElementById('chapterContainer').innerHTML = '';
+            document.getElementById('bottomNav').style.display = 'none';
+            updateProgress(0);
+            currentChapter = 0;
+            toggleSidebar();
+        }
+        
+        // 开始阅读
+        function startReading() {
+            currentChapter = 0;
+            showChapter(0);
+        }
+        
+        // 跳转到指定章节
+        function goToChapter(index) {
+            toggleSidebar();
+            showChapter(index);
+        }
+        
+        // 显示章节
+        function showChapter(index) {
+            if (index < 0 || index >= chapters.length) return;
+            
+            currentChapter = index;
+            
+            // 隐藏封面，显示章节
+            document.getElementById('cover').style.display = 'none';
+            
+            // 创建章节内容
+            const container = document.getElementById('chapterContainer');
+            container.innerHTML = '';
+            
+            const ch = chapters[index];
+            const chapterDiv = document.createElement('div');
+            chapterDiv.className = 'chapter-content active';
+            chapterDiv.innerHTML = `
+                <div class="chapter-header">
+                    <h2 class="chapter-title">${ch.title} ${ch.subtitle}</h2>
+                    <p class="chapter-meta">第 ${index + 1} 章，共 ${chapters.length} 章</p>
+                </div>
+                <div class="story-text">${ch.content}</div>
+            `;
+            container.appendChild(chapterDiv);
+            
+            // 显示底部导航
+            document.getElementById('bottomNav').style.display = 'flex';
+            updateNavButtons();
+            updateProgress((index + 1) / chapters.length * 100);
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+        
+        // 上一章
+        function prevChapter() {
+            if (currentChapter > 0) {
+                showChapter(currentChapter - 1);
+            }
+        }
+        
+        // 下一章
+        function nextChapter() {
+            if (currentChapter < chapters.length - 1) {
+                showChapter(currentChapter + 1);
+            }
+        }
+        
+        // 更新导航按钮状态
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentChapter === 0;
+            document.getElementById('nextBtn').disabled = currentChapter === chapters.length - 1;
+            document.getElementById('chapterIndicator').textContent = `${currentChapter + 1} / ${chapters.length}`;
+        }
+        
+        // 更新进度条
+        function updateProgress(percent) {
+            document.getElementById('progress').style.width = percent + '%';
+        }
+        
+        // 切换侧边栏
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        }
+        
+        // 显示人物介绍
+        function showCharacter(name) {
+            const char = characters[name];
+            if (char) {
+                document.getElementById('charAvatar').textContent = char.avatar;
+                document.getElementById('charName').textContent = name;
+                document.getElementById('charDesc').textContent = char.desc;
+                document.getElementById('characterModal').classList.add('active');
+            }
+        }
+        
+        // 关闭人物介绍
+        function closeCharacter() {
+            document.getElementById('characterModal').classList.remove('active');
+        }
+    </script>
 </body>
 </html>
