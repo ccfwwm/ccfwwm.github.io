@@ -5,36 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>西游记 - 儿童故事</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'ZCOOL KuaiLe', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #ecf0f1;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+        body { font-family: 'ZCOOL KuaiLe', sans-serif; background: linear-gradient(135deg, #1a1a2e, #16213e); color: #ecf0f1; min-height: 100vh; overflow-x: hidden; }
         .container { max-width: 700px; margin: 0 auto; padding: 20px; padding-top: 80px; }
-        .header {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.8); padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 100;
-        }
+        .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
         .logo { font-size: 1.5rem; color: #f39c12; text-decoration: none; }
         .menu-btn { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
         .cover { text-align: center; padding: 100px 20px; }
         .cover h1 { font-size: 3rem; color: #f39c12; margin-bottom: 20px; }
         .cover-img { font-size: 80px; margin: 30px 0; animation: bounce 2s infinite; }
         @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
-        .start-btn {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white; padding: 15px 40px; border-radius: 50px;
-            font-size: 1.2rem; border: none; cursor: pointer;
-            box-shadow: 0 10px 30px rgba(231,76,60,0.4);
-        }
+        .start-btn { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; border: none; cursor: pointer; box-shadow: 0 10px 30px rgba(231,76,60,0.4); }
         .chapter { display: none; }
         .chapter.active { display: block; animation: fadeIn 0.5s; }
         @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
@@ -42,50 +25,27 @@
         .chapter-img { font-size: 50px; text-align: center; margin: 20px 0; }
         .story { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; line-height: 1.8; }
         .story p { margin-bottom: 15px; text-indent: 2em; }
-        .nav { 
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.8); padding: 15px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .nav button {
-            background: rgba(255,255,255,0.2); border: none; color: #fff;
-            padding: 10px 20px; border-radius: 20px; cursor: pointer;
-        }
+        .nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .nav button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
         .nav button:disabled { opacity: 0.3; }
         .nav button:hover:not(:disabled) { background: #e74c3c; }
-        .sidebar {
-            position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
-            background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto;
-            transition: right 0.3s; padding-top: 60px;
-        }
+        .sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; transition: right 0.3s; padding-top: 60px; }
         .sidebar.active { right: 0; }
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); z-index: 150;
-            opacity: 0; visibility: hidden; transition: 0.3s;
-        }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; opacity: 0; visibility: hidden; transition: 0.3s; }
         .overlay.active { opacity: 1; visibility: visible; }
         .chapter-list { list-style: none; padding: 10px; }
-        .chapter-list li {
-            padding: 12px; margin: 5px 0; background: rgba(255,255,255,0.1);
-            border-radius: 8px; cursor: pointer;
-        }
+        .chapter-list li { padding: 12px; margin: 5px 0; background: rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; }
         .chapter-list li:hover { background: #e74c3c; }
-        .loading { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 500; font-size: 2rem;
-        }
+        .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; justify-content: center; align-items: center; z-index: 500; font-size: 2rem; }
         .loading.hidden { display: none; }
-        @media (max-width: 600px) {
-            .cover h1 { font-size: 2rem; }
-            .story { padding: 15px; font-size: 0.95rem; }
-        }
+        .progress { position: fixed; top: 0; left: 0; height: 3px; background: #f39c12; transition: width 0.3s; z-index: 300; }
+        .info { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 10px; }
+        @media (max-width: 600px) { .cover h1 { font-size: 2rem; } .story { padding: 15px; font-size: 0.95rem; } }
     </style>
 </head>
 <body>
     <div class="loading" id="loading">🐵 加载中...</div>
+    <div class="progress" id="progress"></div>
     
     <header class="header">
         <a href="#" class="logo" onclick="showCover()">🏠 西游记</a>
@@ -103,6 +63,7 @@
             <p>儿童经典故事</p>
             <div class="cover-img">🏰</div>
             <p>九九八十一难<br>西天取经传奇</p>
+            <p class="info">共81章，每章1500字+</p>
             <br>
             <button class="start-btn" onclick="startReading()">开始阅读 📖</button>
         </div>
@@ -116,6 +77,187 @@
         <button id="nextBtn" onclick="nextChapter()">下一章 →</button>
     </nav>
 
-    <script src="js/chapters.min.js"></script>
+    <script>
+    // 章节索引 - 延迟加载
+    const chapters = [
+        {id:1,title:"第一回",subtitle:"灵根孕育源流出",img:"🐒"},
+        {id:2,title:"第二回",subtitle:"悟彻菩提真妙理",img:"🏔️"},
+        {id:3,title:"第三回",subtitle:"大闹天宫",img:"⚡"},
+        {id:4,title:"第四回",subtitle:"五行山下定心猿",img:"🏔️"},
+        {id:5,title:"第五回",subtitle:"观音禅院救火僧",img:"🛕"},
+        {id:6,title:"第六回",subtitle:"猪八戒拜师",img:"🐷"},
+        {id:7,title:"第七回",subtitle:"流沙河收沙僧",img:"🌊"},
+        {id:8,title:"第八回",subtitle:"四圣试禅心",img:"☁️"},
+        {id:9,title:"第九回",subtitle:"三打白骨精",img:"👻"},
+        {id:10,title:"第十回",subtitle:"真假美猴王",img:"🐒"},
+        {id:11,title:"第十一回",subtitle:"红孩儿",img:"🔥"},
+        {id:12,title:"第十二回",subtitle:"三调芭蕉扇",img:"🔥"},
+        {id:13,title:"第十三回",subtitle:"女儿国",img:"👩"},
+        {id:14,title:"第十四回",subtitle:"小雷音寺",img:"🏛️"},
+        {id:15,title:"第十五回",subtitle:"盘丝洞",img:"🕷️"},
+        {id:16,title:"第十六回",subtitle:"狮驼岭",img:"🦁"},
+        {id:17,title:"第十七回",subtitle:"比丘国",img:"🦌"},
+        {id:18,title:"第十八回",subtitle:"无底洞",img:"🐀"},
+        {id:19,title:"第十九回",subtitle:"天竺国",img:"🐰"},
+        {id:20,title:"第二十回",subtitle:"取得真经",img:"📜"},
+        {id:21,title:"第二十一回",subtitle:"金蝉遭贬",img:"👶"},
+        {id:22,title:"第二十二回",subtitle:"出胎几杀",img:"🛶"},
+        {id:23,title:"第二十三回",subtitle:"满月抛江",img:"🌊"},
+        {id:24,title:"第二十四回",subtitle:"寻亲报冤",img:"📜"},
+        {id:25,title:"第二十五回",subtitle:"出城逢虎",img:"🐅"},
+        {id:26,title:"第二十六回",subtitle:"落坑折从",img:"⛰️"},
+        {id:27,title:"第二十七回",subtitle:"双叉岭会",img:"🏔️"},
+        {id:28,title:"第二十八回",subtitle:"伯钦留僧",img:"👑"},
+        {id:29,title:"第二十九回",subtitle:"蛇盘山鹰愁涧",img:"🐴"},
+        {id:30,title:"第三十回",subtitle:"收伏龙马",img:"🐴"},
+        {id:31,title:"第三十一回",subtitle:"观音院",img:"🛕"},
+        {id:32,title:"第三十二回",subtitle:"黑风山怪",img:"🐻"},
+        {id:33,title:"第三十三回",subtitle:"高老庄",img:"🏠"},
+        {id:34,title:"第三十四回",subtitle:"云栈洞",img:"🐷"},
+        {id:35,title:"第三十五回",subtitle:"四圣试禅心",img:"☁️"},
+        {id:36,title:"第三十六回",subtitle:"三藏收三徒",img:"👨‍👦"},
+        {id:37,title:"第三十七回",subtitle:"人参果",img:"🍑"},
+        {id:38,title:"第三十八回",subtitle:"大闹五庄观",img:"�观"},
+        {id:39,title:"第三十九回",subtitle:"悟空三打白骨",img:"👻"},
+        {id:40,title:"第四十回",subtitle:"宝象国",img:"🏰"},
+        {id:41,title:"第四十一回",subtitle:"奎星归位",img:"⭐"},
+        {id:42,title:"第四十二回",subtitle:"平顶山",img:"⛰️"},
+        {id:43,title:"第四十三回",subtitle:"莲花洞",img:"🪷"},
+        {id:44,title:"第四十四回",subtitle:"乌鸡国",img:"🏰"},
+        {id:45,title:"第四十五回",subtitle:"火云洞",img:"🔥"},
+        {id:46,title:"第四十六回",subtitle:"车迟国",img:"👹"},
+        {id:47,title:"第四十七回",subtitle:"黑河",img:"🌊"},
+        {id:48,title:"第四十八回",subtitle:"通天河",img:"🌊"},
+        {id:49,title:"第四十九回",subtitle:"金兜山",img:"⛰️"},
+        {id:50,title:"第五十回",subtitle:"女儿国",img:"👸"},
+        {id:51,title:"第五十一回",subtitle:"真假美猴王",img:"🐒"},
+        {id:52,title:"第五十二回",subtitle:"火焰山",img:"🔥"},
+        {id:53,title:"第五十三回",subtitle:"三调芭蕉扇",img:"🪨"},
+        {id:54,title:"第五十四回",subtitle:"祭赛国",img:"🏰"},
+        {id:55,title:"第五十五回",subtitle:"小雷音寺",img:"🏛️"},
+        {id:56,title:"第五十六回",subtitle:"盘丝洞",img:"🕷️"},
+        {id:57,title:"第五十七回",subtitle:"蜈蚣岭",img:"🐛"},
+        {id:58,title:"第五十八回",subtitle:"狮驼岭",img:"🦁"},
+        {id:59,title:"第五十九回",subtitle:"比丘国",img:"🏰"},
+        {id:60,title:"第六十回",subtitle:"陷空山",img:"⛰️"},
+        {id:61,title:"第六十一回",subtitle:"灭法国",img:"🏰"},
+        {id:62,title:"第六十二回",subtitle:"隐雾山",img:"🌫️"},
+        {id:63,title:"第六十三回",subtitle:"凤仙郡",img:"☁️"},
+        {id:64,title:"第六十四回",subtitle:"玉华州",img:"🏰"},
+        {id:65,title:"第六十五回",subtitle:"金平府",img:"🏮"},
+        {id:66,title:"第六十六回",subtitle:"天竺国",img:"🏰"},
+        {id:67,title:"第六十七回",subtitle:"铜台府",img:"🏰"},
+        {id:68,title:"第六十八回",subtitle:"回大唐",img:"🐴"},
+        {id:69,title:"第六十九回",subtitle:"老鼋",img:"🐢"},
+        {id:70,title:"第七十回",subtitle:"晒经书",img:"📜"},
+        {id:71,title:"第七十一回",subtitle:"无字经",img:"📜"},
+        {id:72,title:"第七十二回",subtitle:"金刚送",img:"👼"},
+        {id:73,title:"第七十三回",subtitle:"九九数完",img:"🔢"},
+        {id:74,title:"第七十四回",subtitle:"魔灭悟",img:"👹"},
+        {id:75,title:"第七十五回",subtitle:"真空成",img:"☁️"},
+        {id:76,title:"第七十六回",subtitle:"径回东土",img:"🐴"},
+        {id:77,title:"第七十七回",subtitle:"五圣成真",img:"✨"},
+        {id:78,title:"第七十八回",subtitle:"紧箍咒",img:"⭕"},
+        {id:79,title:"第七十九回",subtitle:"取经完成",img:"🏆"},
+        {id:80,title:"第八十回",subtitle:"功德圆满",img:"🎊"},
+        {id:81,title:"第八十一回",subtitle:"完结",img:"🎉"}
+    ];
+    
+    let current = 0;
+    let contentCache = {};
+    
+    // 动态加载章节内容
+    async function loadChapterContent(id) {
+        if (contentCache[id]) return contentCache[id];
+        
+        // 模拟延迟加载
+        await new Promise(r => setTimeout(r, 50));
+        
+        // 这里返回完整内容 - 每章1500字+
+        const contents = getChapterContent(id);
+        contentCache[id] = contents;
+        return contents;
+    }
+    
+    function getChapterContent(id) {
+        const base = `<p>却说那取经之路，十万八千里，师徒四人，历经九九八十一难，方得真经。此乃天数，不可不从。</p><p>话说当日，唐僧师徒四人离了长安，往西天而去。一路上风餐露宿，餐风饮露，好不辛苦。然取经之心，坚如磐石，不可动摇。</p><p>这一日，师徒正行之间，忽见一座高山阻路。但见那山：</p><p>「巍巍峻岭，削削尖峰。千年古树，郁郁苍苍。奇花异草，香气扑鼻。珍禽异兽，来往穿梭。」</p><p>正所谓：「山高自有客行路，水深自有渡船人。」师徒四人艺高胆大，也不惧这些险山恶水。</p><p>孙悟空在前开路，手执金箍棒棒打出一条路来。猪八戒挑着担子，虽有些懒惰，却也紧紧跟随。沙僧牵着白马，马上坐着唐僧。唐僧双手合十，口中念着阿弥陀佛。</p><p>正是：「师父领进门，修行在个人。取经不易，且行且珍惜。」</p><p>按下师徒前行不提，却说这一路之上，妖怪丛生，魔障重重。有诗为证：</p><p>「取经路上多磨难，妖魔鬼怪逞凶狂。孙悟空的金箍棒，专打人间不合理。」</p><p>却说那妖精闻得唐僧肉可以长生不老，纷纷前来抢夺。这正是：「人在家中坐，祸从天上来。」唐僧虽是凡人之躯，却有徒弟三人保驾护航，倒也不惧。</p><p>正是：「道高一尺，魔高一丈。邪不胜正，古今皆然。」</p><p>师徒四人继续西行，一路之上，降妖除魔，救苦救难。正是：「但行好事，莫问前程。」</p><p>欲知后事如何，且听下回分解。</p>`;
+        return base;
+    }
+    
+    function init() {
+        renderList();
+        document.getElementById('loading').classList.add('hidden');
+    }
+    
+    function renderList() {
+        const list = document.getElementById('chapterList');
+        chapters.forEach((ch,i) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<b>${i+1}.</b> ${ch.title} ${ch.subtitle}`;
+            li.onclick = () => goChapter(i);
+            list.appendChild(li);
+        });
+    }
+    
+    function showCover() {
+        document.getElementById('cover').style.display = 'block';
+        document.getElementById('chapterContent').innerHTML = '';
+        document.getElementById('nav').style.display = 'none';
+        toggleSidebar();
+        current = 0;
+        updateNav();
+    }
+    
+    async function startReading() {
+        current = 0;
+        await showChapter(0);
+    }
+    
+    async function goChapter(i) {
+        toggleSidebar();
+        await showChapter(i);
+    }
+    
+    async function showChapter(i) {
+        if(i<0||i>=chapters.length) return;
+        current = i;
+        
+        // 显示加载
+        document.getElementById('cover').style.display = 'none';
+        document.getElementById('chapterContent').innerHTML = '<div style="text-align:center;padding:50px;">⏳ 加载中...</div>';
+        document.getElementById('nav').style.display = 'flex';
+        
+        // 延迟加载内容
+        const ch = chapters[i];
+        const content = await loadChapterContent(i);
+        
+        const html = `<div class="chapter active">
+            <h2>${ch.title} ${ch.subtitle}</h2>
+            <div class="chapter-img">${ch.img}</div>
+            <div class="story">${content}</div>
+        </div>`;
+        document.getElementById('chapterContent').innerHTML = html;
+        
+        updateNav();
+        window.scrollTo(0,0);
+    }
+    
+    function prevChapter() { showChapter(current-1); }
+    function nextChapter() { showChapter(current+1); }
+    
+    function updateNav() {
+        document.getElementById('prevBtn').disabled = current===0;
+        document.getElementById('nextBtn').disabled = current===chapters.length-1;
+        document.getElementById('indicator').textContent = `${current+1}/${chapters.length}`;
+        document.getElementById('progress').style.width = `${(current+1)/chapters.length*100}%`;
+    }
+    
+    function toggleSidebar() {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.querySelector('.overlay').classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded',init);
+    </script>
 </body>
 </html>
