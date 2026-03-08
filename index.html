@@ -186,12 +186,14 @@
     async function loadChapter(id) {
         if (contentCache[id]) return contentCache[id];
         try {
-            const resp = await fetch('chapters/' + id + '.json');
+            const resp = await fetch('chapters/' + id + '.json?v=' + Date.now());
+            if (!resp.ok) throw new Error('Network error');
             const data = await resp.json();
             contentCache[id] = data[0];
             return contentCache[id];
         } catch(e) {
-            return {title:'第'+id+'回',content:'<p>加载中...</p>'};
+            console.error('Load error:', e);
+            return {title:'第'+id+'回',content:'<p style="text-align:center;padding:20px;">⚠️ 加载失败，请刷新页面重试</p>'};
         }
     }
     
