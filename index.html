@@ -5,42 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>西游记 - 儿童故事</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root { --fs: 18px; --bg: linear-gradient(135deg, #1a1a2e, #16213e); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'ZCOOL KuaiLe', sans-serif; background: linear-gradient(135deg, #1a1a2e, #16213e); color: #ecf0f1; min-height: 100vh; overflow-x: hidden; }
-        .container { max-width: 700px; margin: 0 auto; padding: 20px; padding-top: 80px; }
-        .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
-        .logo { font-size: 1.5rem; color: #f39c12; text-decoration: none; }
-        .menu-btn { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-        .cover { text-align: center; padding: 100px 20px; }
-        .cover h1 { font-size: 3rem; color: #f39c12; margin-bottom: 20px; }
-        .cover-img { font-size: 80px; margin: 30px 0; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
-        .start-btn { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; border: none; cursor: pointer; box-shadow: 0 10px 30px rgba(231,76,60,0.4); }
-        .chapter { display: none; }
-        .chapter.active { display: block; animation: fadeIn 0.5s; }
+        body { font-family: 'Noto Serif SC', 'ZCOOL KuaiLe', serif; background: var(--bg); color: #ecf0f1; min-height: 100vh; overflow-x: hidden; font-size: var(--fs); line-height: 1.8; }
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; padding-top: 80px; padding-bottom: 100px; }
+        .header { position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-size: 1.3rem; color: #f39c12; text-decoration: none; }
+        .header-btns { display: flex; gap: 10px; }
+        .header-btn { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 8px 12px; border-radius: 15px; cursor: pointer; font-size: 0.9rem; }
+        .menu-btn { background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; }
+        .cover { text-align: center; padding: 80px 20px; }
+        .cover h1 { font-size: 2.5rem; color: #f39c12; margin-bottom: 20px; }
+        .cover-img { font-size: 70px; margin: 30px 0; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+        .start-btn { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; border: none; cursor: pointer; margin-top: 20px; }
+        .chapter { display: none; animation: fadeIn 0.5s; }
+        .chapter.active { display: block; }
         @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .chapter h2 { color: #f39c12; text-align: center; margin-bottom: 20px; }
-        .chapter-img { font-size: 50px; text-align: center; margin: 20px 0; }
-        .story { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; line-height: 1.8; }
-        .story p { margin-bottom: 15px; text-indent: 2em; }
-        .nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); padding: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .nav button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+        .chapter h2 { color: #f39c12; text-align: center; margin: 20px 0; font-size: 1.4em; }
+        .chapter-img { font-size: 50px; text-align: center; margin: 15px 0; }
+        .story { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; }
+        .story p { margin-bottom: 18px; text-indent: 2em; }
+        .nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); padding: 15px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .nav button { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 1rem; }
         .nav button:disabled { opacity: 0.3; }
         .nav button:hover:not(:disabled) { background: #e74c3c; }
-        .sidebar { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; transition: right 0.3s; padding-top: 60px; }
+        .nav-center { flex: 1; text-align: center; color: rgba(255,255,255,0.7); }
+        .sidebar { position: fixed; top: 0; right: -320px; width: 320px; height: 100vh; background: rgba(0,0,0,0.95); z-index: 200; overflow-y: auto; transition: right 0.3s; padding-top: 60px; }
         .sidebar.active { right: 0; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 150; opacity: 0; visibility: hidden; transition: 0.3s; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 150; opacity: 0; visibility: hidden; transition: 0.3s; }
         .overlay.active { opacity: 1; visibility: visible; }
         .chapter-list { list-style: none; padding: 10px; }
-        .chapter-list li { padding: 12px; margin: 5px 0; background: rgba(255,255,255,0.1); border-radius: 8px; cursor: pointer; }
+        .chapter-list li { padding: 14px; margin: 5px 0; background: rgba(255,255,255,0.1); border-radius: 10px; cursor: pointer; }
         .chapter-list li:hover { background: #e74c3c; }
-        .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; justify-content: center; align-items: center; z-index: 500; font-size: 2rem; }
+        .loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; justify-content: center; align-items: center; z-index: 500; font-size: 1.5rem; }
         .loading.hidden { display: none; }
         .progress { position: fixed; top: 0; left: 0; height: 3px; background: #f39c12; transition: width 0.3s; z-index: 300; }
-        .info { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 10px; }
-        @media (max-width: 600px) { .cover h1 { font-size: 2rem; } .story { padding: 15px; font-size: 0.95rem; } }
+        .info { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-top: 15px; }
+        .font-panel { position: fixed; top: 60px; right: 10px; background: rgba(0,0,0,0.9); padding: 15px; border-radius: 10px; z-index: 200; display: none; }
+        .font-panel.active { display: block; }
+        .font-panel button { display: block; width: 100%; margin: 5px 0; padding: 8px 15px; background: rgba(255,255,255,0.2); border: none; color: #fff; border-radius: 5px; cursor: pointer; }
+        .font-panel button:hover { background: #e74c3c; }
+        @media (max-width: 600px) { .cover h1 { font-size: 2rem; } .story { padding: 15px; } }
     </style>
 </head>
 <body>
@@ -49,8 +57,18 @@
     
     <header class="header">
         <a href="#" class="logo" onclick="showCover()">🏠 西游记</a>
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="header-btns">
+            <button class="header-btn" onclick="toggleFont()">字</button>
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        </div>
     </header>
+    
+    <div class="font-panel" id="fontPanel">
+        <button onclick="setFontSize(14)">小号 (14px)</button>
+        <button onclick="setFontSize(18)">中号 (18px)</button>
+        <button onclick="setFontSize(22)">大号 (22px)</button>
+        <button onclick="setFontSize(26)">特大 (26px)</button>
+    </div>
     
     <div class="overlay" onclick="toggleSidebar()"></div>
     <aside class="sidebar" id="sidebar">
@@ -63,22 +81,20 @@
             <p>儿童经典故事</p>
             <div class="cover-img">🏰</div>
             <p>九九八十一难<br>西天取经传奇</p>
-            <p class="info">共81章，每章1500字+</p>
-            <br>
+            <p class="info">共81章 · 点击章节目录阅读</p>
             <button class="start-btn" onclick="startReading()">开始阅读 📖</button>
         </div>
-        
         <div id="chapterContent"></div>
     </div>
     
     <nav class="nav" id="nav" style="display:none;">
         <button id="prevBtn" onclick="prevChapter()">← 上一章</button>
-        <span id="indicator">1/81</span>
+        <span class="nav-center" id="indicator">1/81</span>
         <button id="nextBtn" onclick="nextChapter()">下一章 →</button>
     </nav>
 
     <script>
-    // 章节索引 - 延迟加载
+    // 章节索引 - 轻量
     const chapters = [
         {id:1,title:"第一回",subtitle:"灵根孕育源流出",img:"🐒"},
         {id:2,title:"第二回",subtitle:"悟彻菩提真妙理",img:"🏔️"},
@@ -117,7 +133,7 @@
         {id:35,title:"第三十五回",subtitle:"四圣试禅心",img:"☁️"},
         {id:36,title:"第三十六回",subtitle:"三藏收三徒",img:"👨‍👦"},
         {id:37,title:"第三十七回",subtitle:"人参果",img:"🍑"},
-        {id:38,title:"第三十八回",subtitle:"大闹五庄观",img:"�观"},
+        {id:38,title:"第三十八回",subtitle:"大闹五庄观",img:"🛕"},
         {id:39,title:"第三十九回",subtitle:"悟空三打白骨",img:"👻"},
         {id:40,title:"第四十回",subtitle:"宝象国",img:"🏰"},
         {id:41,title:"第四十一回",subtitle:"奎星归位",img:"⭐"},
@@ -166,22 +182,17 @@
     let current = 0;
     let contentCache = {};
     
-    // 动态加载章节内容
-    async function loadChapterContent(id) {
+    // 加载章节内容
+    async function loadChapter(id) {
         if (contentCache[id]) return contentCache[id];
-        
-        // 模拟延迟加载
-        await new Promise(r => setTimeout(r, 50));
-        
-        // 这里返回完整内容 - 每章1500字+
-        const contents = getChapterContent(id);
-        contentCache[id] = contents;
-        return contents;
-    }
-    
-    function getChapterContent(id) {
-        const base = `<p>却说那取经之路，十万八千里，师徒四人，历经九九八十一难，方得真经。此乃天数，不可不从。</p><p>话说当日，唐僧师徒四人离了长安，往西天而去。一路上风餐露宿，餐风饮露，好不辛苦。然取经之心，坚如磐石，不可动摇。</p><p>这一日，师徒正行之间，忽见一座高山阻路。但见那山：</p><p>「巍巍峻岭，削削尖峰。千年古树，郁郁苍苍。奇花异草，香气扑鼻。珍禽异兽，来往穿梭。」</p><p>正所谓：「山高自有客行路，水深自有渡船人。」师徒四人艺高胆大，也不惧这些险山恶水。</p><p>孙悟空在前开路，手执金箍棒棒打出一条路来。猪八戒挑着担子，虽有些懒惰，却也紧紧跟随。沙僧牵着白马，马上坐着唐僧。唐僧双手合十，口中念着阿弥陀佛。</p><p>正是：「师父领进门，修行在个人。取经不易，且行且珍惜。」</p><p>按下师徒前行不提，却说这一路之上，妖怪丛生，魔障重重。有诗为证：</p><p>「取经路上多磨难，妖魔鬼怪逞凶狂。孙悟空的金箍棒，专打人间不合理。」</p><p>却说那妖精闻得唐僧肉可以长生不老，纷纷前来抢夺。这正是：「人在家中坐，祸从天上来。」唐僧虽是凡人之躯，却有徒弟三人保驾护航，倒也不惧。</p><p>正是：「道高一尺，魔高一丈。邪不胜正，古今皆然。」</p><p>师徒四人继续西行，一路之上，降妖除魔，救苦救难。正是：「但行好事，莫问前程。」</p><p>欲知后事如何，且听下回分解。</p>`;
-        return base;
+        try {
+            const resp = await fetch('chapters/' + id + '.json');
+            const data = await resp.json();
+            contentCache[id] = data[0];
+            return contentCache[id];
+        } catch(e) {
+            return {title:'第'+id+'回',content:'<p>加载中...</p>'};
+        }
     }
     
     function init() {
@@ -221,20 +232,17 @@
     async function showChapter(i) {
         if(i<0||i>=chapters.length) return;
         current = i;
-        
-        // 显示加载
         document.getElementById('cover').style.display = 'none';
         document.getElementById('chapterContent').innerHTML = '<div style="text-align:center;padding:50px;">⏳ 加载中...</div>';
         document.getElementById('nav').style.display = 'flex';
         
-        // 延迟加载内容
         const ch = chapters[i];
-        const content = await loadChapterContent(i);
+        const data = await loadChapter(i+1);
         
         const html = `<div class="chapter active">
-            <h2>${ch.title} ${ch.subtitle}</h2>
-            <div class="chapter-img">${ch.img}</div>
-            <div class="story">${content}</div>
+            <h2>${data.title || ch.title} ${data.subtitle || ch.subtitle}</h2>
+            <div class="chapter-img">${data.img || ch.img}</div>
+            <div class="story">${data.content}</div>
         </div>`;
         document.getElementById('chapterContent').innerHTML = html;
         
@@ -256,6 +264,20 @@
         document.getElementById('sidebar').classList.toggle('active');
         document.querySelector('.overlay').classList.toggle('active');
     }
+    
+    function toggleFont() {
+        document.getElementById('fontPanel').classList.toggle('active');
+    }
+    
+    function setFontSize(size) {
+        document.documentElement.style.setProperty('--fs', size + 'px');
+        localStorage.setItem('fontSize', size);
+    }
+    
+    // 读取保存的字体大小
+    const savedSize = localStorage.getItem('fontSize');
+    if(savedSize) setFontSize(parseInt(savedSize));
+    else setFontSize(22); // 默认大号
     
     document.addEventListener('DOMContentLoaded',init);
     </script>
